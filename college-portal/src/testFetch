@@ -1,0 +1,10 @@
+// testFetch.js
+import fetch from "node-fetch";
+
+const main = async () => {
+  const response = await fetch("http://localhost:8080/collegeupdates");
+  const data = await response.json();
+  console.log(data);
+};
+
+main();
