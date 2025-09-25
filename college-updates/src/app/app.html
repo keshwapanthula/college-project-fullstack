@@ -1,0 +1,82 @@
+<!-- app.component.html -->
+
+<app-header></app-header>
+
+<main class="p-4">
+  <!-- Router outlet to load routed components -->
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Optional: keep your placeholder content below if you want a dashboard/home view -->
+<div class="content" *ngIf="false">
+  <div class="left-side">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 982 239"
+      fill="none"
+      class="angular-logo"
+    >
+      <!-- SVG paths here -->
+    </svg>
+    <h1>Hello, {{ title() }}</h1>
+    <p>Congratulations! Your app is running. 🎉</p>
+  </div>
+  <div class="divider" role="separator" aria-label="Divider"></div>
+  <div class="right-side">
+    <div class="pill-group">
+      <a
+        class="pill"
+        *ngFor="let item of [
+          { title: 'Explore the Docs', link: 'https://angular.dev' },
+          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
+          { title: 'Prompt and best practices for AI', link: 'https://angular.dev/ai/develop-with-ai'},
+          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
+          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },
+          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' }
+        ]"
+        [href]="item.link"
+        target="_blank"
+        rel="noopener"
+      >
+        <span>{{ item.title }}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="14"
+          viewBox="0 -960 960 960"
+          width="14"
+          fill="currentColor"
+        >
+          <path
+            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
+          />
+        </svg>
+      </a>
+    </div>
+    <div class="social-links">
+      <a
+        href="https://github.com/angular/angular"
+        aria-label="Github"
+        target="_blank"
+        rel="noopener"
+      >
+        <!-- Github SVG -->
+      </a>
+      <a
+        href="https://twitter.com/angular"
+        aria-label="Twitter"
+        target="_blank"
+        rel="noopener"
+      >
+        <!-- Twitter SVG -->
+      </a>
+      <a
+        href="https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw"
+        aria-label="Youtube"
+        target="_blank"
+        rel="noopener"
+      >
+        <!-- Youtube SVG -->
+      </a>
+    </div>
+  </div>
+</div>

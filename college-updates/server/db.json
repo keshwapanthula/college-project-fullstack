@@ -1,0 +1,14 @@
+{
+  "updates": [
+    { "id": 1, "title": "Semester Exams Notification", "category": "Exams", "date": "2025-09-20", "description": "Final semester exams start 20th Sept." },
+    { "id": 2, "title": "Guest Lecture on AI", "category": "Events", "date": "2025-09-15", "description": "AI lecture in main auditorium." }
+  ],
+  "notifications": [
+    { "id": 1, "title": "Library Closed", "date": "2025-09-13", "description": "Library will be closed this weekend." },
+    { "id": 2, "title": "Cultural Fest", "date": "2025-09-18", "description": "Annual fest starts next week." }
+  ],
+  "adminServices": [
+    { "id": 1, "name": "Apply for Leave", "description": "Submit leave requests online." },
+    { "id": 2, "name": "Request Certificate", "description": "Request course completion certificates." }
+  ]
+}
