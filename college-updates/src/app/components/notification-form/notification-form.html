@@ -1,0 +1,62 @@
+<div class="notification-form-container">
+  <!-- Toggle Button -->
+  <div class="mb-4">
+    <button
+      (click)="toggleForm()"
+      class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors duration-200 flex items-center gap-2">
+      <span *ngIf="!showForm">🔔 Add New Notification</span>
+      <span *ngIf="showForm">❌ Cancel</span>
+    </button>
+  </div>
+
+  <!-- Form -->
+  <div *ngIf="showForm" class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+    <h3 class="text-xl font-semibold mb-4 text-gray-800">📢 Create New Notification</h3>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+      {{ error }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #notificationForm="ngForm">
+      <!-- Message Field -->
+      <div class="mb-6">
+        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+          Notification Message *
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          [(ngModel)]="newNotification.message"
+          required
+          rows="4"
+          maxlength="300"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-vertical"
+          placeholder="Enter notification message..."
+          [disabled]="isSubmitting"></textarea>
+        <div class="char-counter">
+          {{ newNotification.message.length }} / 300 characters
+        </div>
+      </div>
+
+      <!-- Submit Buttons -->
+      <div class="flex gap-3">
+        <button
+          type="submit"
+          [disabled]="!notificationForm.form.valid || isSubmitting"
+          class="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2">
+          <span *ngIf="!isSubmitting">📣 Send Notification</span>
+          <span *ngIf="isSubmitting">⏳ Sending...</span>
+        </button>
+
+        <button
+          type="button"
+          (click)="resetForm()"
+          [disabled]="isSubmitting"
+          class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200">
+          🔄 Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

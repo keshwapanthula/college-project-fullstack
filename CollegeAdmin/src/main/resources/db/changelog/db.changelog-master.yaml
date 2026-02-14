@@ -1,0 +1,434 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-students-table
+      author: admin
+      changes:
+        - createTable:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: first_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: date_of_birth
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: department
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: major
+                  type: VARCHAR(50)
+              - column:
+                  name: year
+                  type: INTEGER
+              - column:
+                  name: phone_number
+                  type: VARCHAR(15)
+              - column:
+                  name: address
+                  type: TEXT
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  defaultValue: ACTIVE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 002-create-indexes-students
+      author: admin
+      changes:
+        - createIndex:
+            indexName: idx_student_email
+            tableName: students
+            columns:
+              - column:
+                  name: email
+        - createIndex:
+            indexName: idx_student_department
+            tableName: students
+            columns:
+              - column:
+                  name: department
+        - createIndex:
+            indexName: idx_student_status
+            tableName: students
+            columns:
+              - column:
+                  name: status
+        - createIndex:
+            indexName: idx_student_year
+            tableName: students
+            columns:
+              - column:
+                  name: year
+
+  - changeSet:
+      id: 003-insert-sample-students
+      author: admin
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: student_id
+                  value: "STU001"
+              - column:
+                  name: first_name
+                  value: "John"
+              - column:
+                  name: last_name
+                  value: "Doe"
+              - column:
+                  name: email
+                  value: "john.doe@college.edu"
+              - column:
+                  name: date_of_birth
+                  value: "2000-05-15"
+              - column:
+                  name: department
+                  value: "Computer Science"
+              - column:
+                  name: major
+                  value: "Software Engineering"
+              - column:
+                  name: year
+                  value: "3"
+              - column:
+                  name: phone_number
+                  value: "555-0101"
+              - column:
+                  name: address
+                  value: "123 Campus Drive, University City"
+              - column:
+                  name: status
+                  value: "ACTIVE"
+
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: student_id
+                  value: "STU002"
+              - column:
+                  name: first_name
+                  value: "Jane"
+              - column:
+                  name: last_name
+                  value: "Smith"
+              - column:
+                  name: email
+                  value: "jane.smith@college.edu"
+              - column:
+                  name: date_of_birth
+                  value: "1999-08-22"
+              - column:
+                  name: department
+                  value: "Business Administration"
+              - column:
+                  name: major
+                  value: "Marketing"
+              - column:
+                  name: year
+                  value: "4"
+              - column:
+                  name: phone_number
+                  value: "555-0102"
+              - column:
+                  name: address
+                  value: "456 College Avenue, University City"
+              - column:
+                  name: status
+                  value: "ACTIVE"
+
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: student_id
+                  value: "STU003"
+              - column:
+                  name: first_name
+                  value: "Mike"
+              - column:
+                  name: last_name
+                  value: "Johnson"
+              - column:
+                  name: email
+                  value: "mike.johnson@college.edu"
+              - column:
+                  name: date_of_birth
+                  value: "2001-12-10"
+              - column:
+                  name: department
+                  value: "Engineering"
+              - column:
+                  name: major
+                  value: "Electrical Engineering"
+              - column:
+                  name: year
+                  value: "2"
+              - column:
+                  name: phone_number
+                  value: "555-0103"
+              - column:
+                  name: address
+                  value: "789 Student Lane, University City"
+              - column:
+                  name: status
+                  value: "ACTIVE"
+
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: student_id
+                  value: "STU004"
+              - column:
+                  name: first_name
+                  value: "Emily"
+              - column:
+                  name: last_name
+                  value: "Davis"
+              - column:
+                  name: email
+                  value: "emily.davis@college.edu"
+              - column:
+                  name: date_of_birth
+                  value: "2000-03-07"
+              - column:
+                  name: department
+                  value: "Arts and Sciences"
+              - column:
+                  name: major
+                  value: "Biology"
+              - column:
+                  name: year
+                  value: "3"
+              - column:
+                  name: phone_number
+                  value: "555-0104"
+              - column:
+                  name: address
+                  value: "321 Academic Road, University City"
+              - column:
+                  name: status
+                  value: "ACTIVE"
+
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: student_id
+                  value: "STU005"
+              - column:
+                  name: first_name
+                  value: "Robert"
+              - column:
+                  name: last_name
+                  value: "Wilson"
+              - column:
+                  name: email
+                  value: "robert.wilson@college.edu"
+              - column:
+                  name: date_of_birth
+                  value: "1998-11-30"
+              - column:
+                  name: department
+                  value: "Computer Science"
+              - column:
+                  name: major
+                  value: "Data Science"
+              - column:
+                  name: year
+                  value: "4"
+              - column:
+                  name: phone_number
+                  value: "555-0105"
+              - column:
+                  name: address
+                  value: "654 Research Blvd, University City"
+              - column:
+                  name: status
+                  value: "GRADUATED"
+
+  - changeSet:
+      id: 004-create-faculty-table
+      author: admin
+      changes:
+        - createTable:
+            tableName: faculty
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: faculty_id
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: first_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: department
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: position
+                  type: VARCHAR(50)
+              - column:
+                  name: specialization
+                  type: VARCHAR(100)
+              - column:
+                  name: phone_number
+                  type: VARCHAR(15)
+              - column:
+                  name: office_location
+                  type: VARCHAR(100)
+              - column:
+                  name: hire_date
+                  type: DATE
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  defaultValue: ACTIVE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 005-create-courses-table
+      author: admin
+      changes:
+        - createTable:
+            tableName: courses
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: course_code
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: course_name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: department
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: credits
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: prerequisites
+                  type: VARCHAR(500)
+              - column:
+                  name: faculty_id
+                  type: BIGINT
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  defaultValue: ACTIVE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+        - addForeignKeyConstraint:
+            baseColumnNames: faculty_id
+            baseTableName: courses
+            constraintName: fk_courses_faculty
+            referencedColumnNames: id
+            referencedTableName: faculty

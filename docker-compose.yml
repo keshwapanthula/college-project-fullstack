@@ -1,0 +1,153 @@
+version: '3.8'
+
+services:
+  # Kafka (required for microservices communication)
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - college-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+    networks:
+      - college-network
+
+  # Backend Services
+  college-admin:
+    build: 
+      context: ./CollegeAdmin
+      dockerfile: Dockerfile
+    container_name: college-admin
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - JAVA_OPTS=-XX:MaxRAMPercentage=75.0
+    depends_on:
+      - kafka
+    networks:
+      - college-network
+    restart: unless-stopped
+
+  college-notifications-backend:
+    build: 
+      context: ./CollegeNotifications
+      dockerfile: Dockerfile
+    container_name: college-notifications-backend
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - JAVA_OPTS=-XX:MaxRAMPercentage=75.0
+    depends_on:
+      - kafka
+      - mongodb
+    networks:
+      - college-network
+    restart: unless-stopped
+
+  college-updates-backend:
+    build: 
+      context: ./CollegeUpdates
+      dockerfile: Dockerfile
+    container_name: college-updates-backend
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - JAVA_OPTS=-XX:MaxRAMPercentage=75.0
+    depends_on:
+      - kafka
+    networks:
+      - college-network
+    restart: unless-stopped
+
+  # Optional MongoDB (for notifications service)
+  mongodb:
+    image: mongo:6.0-jammy
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - college-network
+    restart: unless-stopped
+
+  # Frontend Services
+  college-notifications-frontend:
+    build: 
+      context: ./college-notifications
+      dockerfile: Dockerfile
+    container_name: college-notifications-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - college-admin
+      - college-notifications-backend
+      - college-updates-backend
+    networks:
+      - college-network
+    restart: unless-stopped
+
+  college-portal-frontend:
+    build: 
+      context: ./college-portal
+      dockerfile: Dockerfile
+    container_name: college-portal-frontend
+    ports:
+      - "3001:80"
+    depends_on:
+      - college-admin
+      - college-notifications-backend
+      - college-updates-backend
+    networks:
+      - college-network
+    restart: unless-stopped
+
+  college-updates-frontend:
+    build: 
+      context: ./college-updates
+      dockerfile: Dockerfile
+    container_name: college-updates-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - college-admin
+      - college-notifications-backend
+      - college-updates-backend
+    networks:
+      - college-network
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  college-network:
+    driver: bridge
