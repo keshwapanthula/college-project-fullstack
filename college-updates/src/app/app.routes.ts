@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { AdminServicesComponent } from './components/admin-services/admin-services.component';
-import { NotificationsComponent } from './components/notifications/notifications.component';
-import { UpdatesListComponent } from './components/updates-list/updates-list.component';
+import { AdminServices } from './components/admin-services/admin-services';
+import { Notifications } from './components/notifications/notifications';
+import { UpdatesList } from './components/updates-list/updates-list';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'updates', pathMatch: 'full' },
-  { path: 'updates', component: UpdatesListComponent },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'admin', component: AdminServicesComponent },
+  { path: 'updates', component: UpdatesList },
+  { path: 'notifications', component: Notifications },
+  { path: 'admin', component: AdminServices },
   { path: '**', redirectTo: 'updates' }  // catch-all route
 ];

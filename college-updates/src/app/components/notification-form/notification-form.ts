@@ -45,7 +45,7 @@ export class NotificationForm {
         this.notificationAdded.emit();
         this.isSubmitting = false;
       },
-      error: (err) => {
+      error: (err: unknown) => {
         this.error = 'Failed to create notification. Please try again.';
         this.isSubmitting = false;
         console.error('Error creating notification:', err);

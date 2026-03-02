@@ -18,4 +18,8 @@ export class NotificationsService {
   getNotifications(): Observable<Notification[]> {
     return this.http.get<Notification[]>(this.apiUrl);
   }
+
+  createNotification(notification: { message: string }): Observable<Notification> {
+    return this.http.post<Notification>(this.apiUrl, notification);
+  }
 }

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
+  imports: [RouterLink, RouterLinkActive],
   template: `
     <nav class="header-nav">
       <a routerLink="/updates" routerLinkActive="active">Updates</a>
