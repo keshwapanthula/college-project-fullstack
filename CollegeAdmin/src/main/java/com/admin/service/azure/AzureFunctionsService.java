@@ -15,6 +15,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
 import com.azure.resourcemanager.AzureResourceManager;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * Provides serverless function capabilities equivalent to AWS Lambda
  * including function creation, invocation, and management
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

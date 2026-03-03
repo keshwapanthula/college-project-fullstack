@@ -3,6 +3,8 @@ package com.admin.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.apigateway.ApiGatewayClient;
@@ -20,6 +22,7 @@ import software.amazon.awssdk.services.sfn.SfnClient;
  * Comprehensive AWS Services Configuration
  * Configures all major AWS services for enterprise Java applications
  */
+@Profile({"aws", "default"})
 @Configuration
 public class AwsServicesConfiguration {
 

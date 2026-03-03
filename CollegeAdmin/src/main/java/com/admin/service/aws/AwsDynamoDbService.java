@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +42,7 @@ import software.amazon.awssdk.services.dynamodb.model.WriteRequest;
  * AWS DynamoDB Service Integration
  * Provides NoSQL database operations for high-performance, scalable data storage
  */
+@Profile({"aws", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

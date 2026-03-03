@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.azure.cosmos.CosmosClient;
 import com.azure.cosmos.CosmosContainer;
@@ -31,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * Provides NoSQL database capabilities equivalent to AWS DynamoDB
  * including document operations, queries, and analytics
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

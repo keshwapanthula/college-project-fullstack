@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,6 +34,7 @@ import software.amazon.awssdk.services.sfn.model.StopExecutionRequest;
  * AWS Step Functions Workflow Orchestration Service
  * Manages complex business workflows with state machines and choreography
  */
+@Profile({"aws", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

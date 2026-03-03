@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.azure.storage.blob.BlobClient;
@@ -32,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  * Comprehensive blob storage operations including upload, download, metadata management,
  * shared access signatures, and container management
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

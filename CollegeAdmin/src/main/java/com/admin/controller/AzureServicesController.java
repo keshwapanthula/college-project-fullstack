@@ -37,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  * Comprehensive REST API controller exposing all 10 Azure services
  * Equivalent to AWS services but for Azure cloud platform
  */
+@Profile({"azure", "default"})
 @RestController
 @RequestMapping("/api/azure")
 @RequiredArgsConstructor

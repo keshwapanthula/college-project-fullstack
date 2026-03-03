@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.azure.monitor.query.LogsQueryClient;
 import com.azure.monitor.query.models.LogsQueryOptions;
@@ -27,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * Provides comprehensive application monitoring, tracing, and analytics
  * equivalent to AWS X-Ray monitoring capabilities
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

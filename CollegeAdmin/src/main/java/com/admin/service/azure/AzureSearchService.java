@@ -11,6 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.azure.search.documents.SearchClient;
 import com.azure.search.documents.SearchDocument;
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * Provides comprehensive search capabilities including document indexing,
  * full-text search, faceted search, and analytics
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

@@ -3,6 +3,7 @@ package com.admin.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import com.amazonaws.xray.AWSXRayRecorder;
 import com.amazonaws.xray.AWSXRayRecorderBuilder;
@@ -28,6 +29,7 @@ import software.amazon.awssdk.services.ssm.SsmClient;
  * AWS SDK Configuration for College Admin Service
  * Configures AWS clients for S3, SQS, SNS, CloudWatch, and Parameter Store
  */
+@Profile({"aws", "default"})
 @Configuration
 public class AwsConfiguration {
 

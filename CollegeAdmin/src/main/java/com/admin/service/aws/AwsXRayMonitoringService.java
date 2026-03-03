@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.amazonaws.xray.AWSXRayRecorder;
 import com.amazonaws.xray.entities.Segment;
@@ -35,6 +36,7 @@ import software.amazon.awssdk.services.cloudwatch.model.Statistic;
  * AWS X-Ray Monitoring and CloudWatch Service
  * Provides distributed tracing, monitoring, and observability
  */
+@Profile({"aws", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

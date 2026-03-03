@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,6 +25,7 @@ import software.amazon.awssdk.services.lambda.model.LogType;
  * AWS Lambda Integration Service
  * Provides serverless function invocation and management capabilities
  */
+@Profile({"aws", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.admin.service.azure.AzureActiveDirectoryService;
@@ -27,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
  * Integrates all 10 Azure services health checks with Spring Boot Actuator
  * Provides comprehensive health monitoring for Azure cloud services
  */
+@Profile({"azure", "default"})
 @Component("azureServices")
 @RequiredArgsConstructor
 @Slf4j

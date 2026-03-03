@@ -10,6 +10,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.azure.core.util.BinaryData;
 import com.azure.messaging.eventgrid.EventGridEvent;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
  * Provides event-driven architecture capabilities for microservices communication
  * including event publishing, custom topics, and event routing
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

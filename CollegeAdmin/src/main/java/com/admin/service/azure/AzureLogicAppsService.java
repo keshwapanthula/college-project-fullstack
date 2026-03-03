@@ -11,6 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
 import com.azure.resourcemanager.AzureResourceManager;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
  * Provides workflow orchestration capabilities equivalent to AWS Step Functions
  * including workflow creation, execution, and monitoring
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

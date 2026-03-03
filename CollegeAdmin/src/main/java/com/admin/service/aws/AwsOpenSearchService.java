@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ import software.amazon.awssdk.services.opensearch.model.VolumeType;
  * AWS OpenSearch Service (Elasticsearch)
  * Provides search, analytics, and data visualization capabilities
  */
+@Profile({"aws", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

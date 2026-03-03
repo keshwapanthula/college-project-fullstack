@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,7 @@ import software.amazon.awssdk.services.apigateway.model.Resource;
  * AWS API Gateway Management Service
  * Provides REST API and GraphQL API creation, deployment, and management
  */
+@Profile({"aws", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

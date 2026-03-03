@@ -5,6 +5,7 @@ import com.azure.messaging.servicebus.ServiceBusSenderClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import java.util.concurrent.CompletableFuture;
  * Provides messaging, pub/sub, and queue management capabilities
  * Equivalent to AWS SQS/SNS and GCP Pub/Sub
  */
+@Profile({"azure", "default"})
 @Service
 @Slf4j
 public class AzureServiceBusService {

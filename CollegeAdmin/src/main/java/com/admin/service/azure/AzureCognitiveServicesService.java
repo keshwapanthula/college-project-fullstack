@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.models.ChatCompletions;
@@ -32,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  * Provides machine learning and AI capabilities including text analytics, 
  * sentiment analysis, language detection, key phrase extraction, and OpenAI integration
  */
+@Profile({"azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

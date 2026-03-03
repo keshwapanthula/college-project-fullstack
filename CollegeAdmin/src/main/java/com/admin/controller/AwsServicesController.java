@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  * Comprehensive AWS Services Integration Controller
  * Demonstrates all major AWS services integration capabilities for Java developers
  */
+@Profile({"aws", "default"})
 @RestController
 @RequestMapping("/api/aws")
 @RequiredArgsConstructor
