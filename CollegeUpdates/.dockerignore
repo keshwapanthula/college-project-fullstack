@@ -1,0 +1,12 @@
+# Exclude unnecessary files from Docker build context
+.git/
+.idea/
+*.iml
+*.md
+
+# Exclude pre-built artifacts (we build inside Docker now)
+target/
+
+# Exclude local dev configs
+.env
+.env.local
