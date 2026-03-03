@@ -1,16 +1,36 @@
 package com.admin.service;
 
-import com.admin.service.gcp.*;
-import com.admin.service.aws.*;
-import com.admin.service.azure.*;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.admin.service.aws.AwsCognitoService;
+import com.admin.service.aws.AwsDynamoDbService;
+import com.admin.service.aws.AwsKinesisService;
+import com.admin.service.aws.AwsLambdaService;
+import com.admin.service.aws.AwsStepFunctionsService;
+import com.admin.service.azure.AzureActiveDirectoryService;
+import com.admin.service.azure.AzureCosmosDbService;
+import com.admin.service.azure.AzureFunctionsService;
+import com.admin.service.azure.AzureLogicAppsService;
+import com.admin.service.azure.AzureServiceBusService;
+import com.admin.service.gcp.GcpAiPlatformService;
+import com.admin.service.gcp.GcpApiGatewayService;
+import com.admin.service.gcp.GcpCloudFunctionsService;
+import com.admin.service.gcp.GcpCloudStorageService;
+import com.admin.service.gcp.GcpFirestoreService;
+import com.admin.service.gcp.GcpIdentityService;
+import com.admin.service.gcp.GcpMonitoringService;
+import com.admin.service.gcp.GcpPubSubService;
+import com.admin.service.gcp.GcpSearchService;
+import com.admin.service.gcp.GcpWorkflowsService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Centralized Health Check Service
@@ -34,19 +54,29 @@ public class HealthCheckService {
     private final GcpWorkflowsService gcpWorkflowsService;
     private final GcpIdentityService gcpIdentityService;
 
-    // AWS Services
-    private final AwsLambdaService awsLambdaService;
-    private final AwsDynamoDbService awsDynamoDbService;
-    private final AwsKinesisService awsKinesisService;
-    private final AwsStepFunctionsService awsStepFunctionsService;
-    private final AwsCognitoService awsCognitoService;
+    // AWS Services (optional - only available in aws profile)
+    @Autowired(required=false)
+    private AwsLambdaService awsLambdaService;
+    @Autowired(required=false)
+    private AwsDynamoDbService awsDynamoDbService;
+    @Autowired(required=false)
+    private AwsKinesisService awsKinesisService;
+    @Autowired(required=false)
+    private AwsStepFunctionsService awsStepFunctionsService;
+    @Autowired(required=false)
+    private AwsCognitoService awsCognitoService;
 
-    // Azure Services
-    private final AzureFunctionsService azureFunctionsService;
-    private final AzureCosmosDbService azureCosmosDbService;
-    private final AzureServiceBusService azureServiceBusService;
-    private final AzureLogicAppsService azureLogicAppsService;
-    private final AzureActiveDirectoryService azureActiveDirectoryService;
+    // Azure Services (optional - only available in azure profile)
+    @Autowired(required=false)
+    private AzureFunctionsService azureFunctionsService;
+    @Autowired(required=false)
+    private AzureCosmosDbService azureCosmosDbService;
+    @Autowired(required=false)
+    private AzureServiceBusService azureServiceBusService;
+    @Autowired(required=false)
+    private AzureLogicAppsService azureLogicAppsService;
+    @Autowired(required=false)
+    private AzureActiveDirectoryService azureActiveDirectoryService;
 
     /**
      * Comprehensive multi-cloud health check

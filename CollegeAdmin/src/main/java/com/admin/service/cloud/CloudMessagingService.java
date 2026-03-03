@@ -2,6 +2,7 @@ package com.admin.service.cloud;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import com.azure.messaging.servicebus.ServiceBusMessage;
 import com.azure.messaging.servicebus.ServiceBusSenderClient;
@@ -19,6 +20,7 @@ import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
  * Provides messaging capabilities using both AWS (SQS/SNS) and Azure (Service Bus)
  * Demonstrates multi-cloud messaging patterns for enterprise microservices
  */
+@Profile({"aws", "azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

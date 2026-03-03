@@ -4,6 +4,7 @@ import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import software.amazon.awssdk.services.cloudwatch.model.Statistic;
  * Cloud Monitoring Service for AWS CloudWatch and Azure Monitor
  * Provides comprehensive monitoring capabilities for multi-cloud environments
  */
+@Profile({"aws", "azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.admin.dto.CloudStorageResponse;
@@ -24,6 +25,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
  * Cloud Storage Service providing hybrid AWS S3 and Azure Blob Storage capabilities
  * Demonstrates multi-cloud architecture patterns for enterprise applications
  */
+@Profile({"aws", "azure", "default"})
 @Service
 @RequiredArgsConstructor
 @Slf4j

@@ -23,6 +23,7 @@ import java.util.Map;
  * Demonstrates AWS and Azure integrations for College Admin Service
  * Provides REST endpoints for testing multi-cloud capabilities
  */
+@Profile({"aws", "azure", "default"})
 @RestController
 @RequestMapping("/api/cloud")
 @RequiredArgsConstructor
