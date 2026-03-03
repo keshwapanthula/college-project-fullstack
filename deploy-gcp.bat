@@ -142,7 +142,7 @@ REM  Azure Equivalent: az containerapp create
 REM ============================================================
 echo [9/9] Deploying to Cloud Run...
 
-REM Deploy college-admin backend (0.5 vCPU, 512Mi)
+REM Deploy college-admin backend (1 vCPU, 1Gi)
 echo   Deploying college-admin...
 gcloud run deploy college-admin ^
     --image=%REGISTRY%/college-admin:latest ^
@@ -150,7 +150,7 @@ gcloud run deploy college-admin ^
     --platform=managed ^
     --allow-unauthenticated ^
     --port=8082 ^
-    --cpu=0.5 ^
+    --cpu=1 ^
     --memory=1Gi ^
     --min-instances=1 ^
     --max-instances=5 ^
@@ -168,7 +168,7 @@ gcloud run deploy college-notifications-backend ^
     --platform=managed ^
     --allow-unauthenticated ^
     --port=8083 ^
-    --cpu=0.5 ^
+    --cpu=1 ^
     --memory=1Gi ^
     --min-instances=1 ^
     --max-instances=5 ^
@@ -186,7 +186,7 @@ gcloud run deploy college-updates-backend ^
     --platform=managed ^
     --allow-unauthenticated ^
     --port=8081 ^
-    --cpu=0.5 ^
+    --cpu=1 ^
     --memory=1Gi ^
     --min-instances=1 ^
     --max-instances=5 ^
